@@ -5,6 +5,8 @@ namespace Zork
 {
     class Program
     {
+        private static string[] _rooms = { "Forest", "West of House", "Behind House", "Clearing", "Canyon View" };
+        private static int _currentRoom = 1;
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Zork!");
@@ -12,7 +14,7 @@ namespace Zork
             bool isRunning = true;
             while (isRunning)
             {
-                Console.Write(">");
+                Console.Write($"{_rooms[_currentRoom]}\n>");
                 string inputString = Console.ReadLine().Trim().ToUpper();
                 Commands command = ToCommand(inputString); //Refactoring
 
@@ -31,7 +33,14 @@ namespace Zork
                     case Commands.SOUTH:
                     case Commands.EAST:
                     case Commands.WEST:
-                        outputString = $"You moved {command}.";
+                        if (Move(command))
+                        {
+                            outputString = $"You moved {command}.";
+                        }
+                        else
+                        {
+                            outputString = "The Way is shut!";
+                        }
                         break;
 
                     default:
@@ -54,5 +63,27 @@ namespace Zork
                 return Commands.UNKNOWN;
             }
         }
+        private static bool Move(Commands command)
+        {
+                bool didMove = false;
+
+                switch (command)
+                {
+                    case Commands.NORTH:
+                    case Commands.SOUTH:
+                        break;
+                    case Commands.EAST when _currentRoom < _rooms.Length - 1:
+                        _currentRoom++;
+                        didMove = true;
+                        break;
+                    case Commands.WEST when _currentRoom > 0:
+                            _currentRoom--;
+                            didMove = true;
+                        break;
+                }
+                return didMove;
+        }
+      
+       }
     }
-}
+
