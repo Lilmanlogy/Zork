@@ -8,7 +8,6 @@
         SOUTH,
         EAST,
         WEST,
-        BEE,
         UNKNOWN
     }
 }
