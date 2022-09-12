@@ -5,6 +5,13 @@ namespace Zork
 {
     class Program
     {
+        private static string CurrentRoom
+        {
+            get
+            {
+                return _rooms[_location.Row, _location.Column];
+            }
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Zork!");
@@ -25,7 +32,7 @@ namespace Zork
                         break;
 
                     case Commands.LOOK:
-                        outputString = "This is an open field west of a white house, with a boarded front door.\nA rubber mat saying 'Welcome to Zork!' lies by the door.";
+                        Console.WriteLine(CurrentRoom.Description);
                         break;
                     case Commands.NORTH:
                     case Commands.SOUTH:
@@ -88,11 +95,11 @@ namespace Zork
             }
             return didMove;
         }
-        private static string[,] _rooms =
+        private static readonly Room[,] _rooms =
             {
-                {"Rocky Trail", "South of House", "Canyon View" },
-                {"Forest", "West of House", "Behind House" },
-                {"Dense Woods", "North of House", "Clearing", }
+                { new Room("Rocky Trail"), new Room("South of House"), new Room("Canyon View") },
+                { new Room("Forest"), new Room("West of House"), new Room("Behind House") },
+                { new Room("Dense Woods"), new Room("North of House"), new Room("Clearing"), }
             };
 
         private static (int Row, int Column) _location = (1, 1);
