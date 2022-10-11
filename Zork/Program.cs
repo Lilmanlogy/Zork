@@ -18,9 +18,13 @@ namespace Zork
         }
         static void Main()
         {
+<<<<<<< HEAD
+=======
+
+>>>>>>> e9e632f319672878dd60cb1973442aab0f0d0a2a
             Console.WriteLine("Welcome to Zork!");
             
-            InitializeRoomDescriptions();
+            InitializeRoomDescriptions(@"Content\Rooms.json");
 
             Room previousRoom = null;
             bool isRunning = true;
@@ -116,9 +120,18 @@ namespace Zork
             _rooms = JsonConvert.DeserializeObject<Room[,]>(File.ReadAllText(roomsFilename));
         }
 
+<<<<<<< HEAD
         private static Room[,] _rooms;
             
        
+=======
+        private static readonly Room[,] _rooms =
+            {
+                { new Room("Rocky Trail"), new Room("South of House"), new Room("Canyon View") },
+                { new Room("Forest"), new Room("West of House"), new Room("Behind House") },
+                { new Room("Dense Woods"), new Room("North of House"), new Room("Clearing"), }
+            };
+>>>>>>> e9e632f319672878dd60cb1973442aab0f0d0a2a
         private static (int Row, int Column) _location = (1, 1);
 
         private enum CommandLineArguments
@@ -126,5 +139,3 @@ namespace Zork
             RoomsFileName = 0
         }
     }
-}
-
