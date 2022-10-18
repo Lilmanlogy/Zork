@@ -57,6 +57,6 @@ namespace Zork
         }
         private World _world;
         private (int Row, int Column) _location;
-
+        
     }
 }

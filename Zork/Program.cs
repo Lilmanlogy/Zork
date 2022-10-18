@@ -11,11 +11,12 @@ namespace Zork
     {
         static void Main()
         {
-            const string defaulRoomsFilename = @"Content\Game.json";
+            const string defaultGameFilename = (@"Content\Game.json");
             Game game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(@"Content\Game.json"));
 
-
+            
             Console.WriteLine("Welcome to Zork!");
+            game.Run();
 
             
         }
@@ -24,6 +25,6 @@ namespace Zork
         {
             RoomsFileName = 0
         }
-        private static (int Row, int Column) _location = (1, 1);
+        
     }
 }
