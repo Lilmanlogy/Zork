@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Zork
 {
@@ -11,6 +12,7 @@ namespace Zork
                 return _world.Rooms[_location.Row, _location.Column];
             }
         }
+        public List<Item> Inventory { get; }
         public Player(World world, string startingLocation)
         {
             _world = world;
